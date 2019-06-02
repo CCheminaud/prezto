@@ -35,6 +35,7 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'utility' \
   'completion' \
+  'syntax-highlighting' \
   'prompt'
 
 #
@@ -164,20 +165,29 @@ zstyle ':prezto:module:prompt' theme 'sorin'
 
 # Set syntax highlighters.
 # By default, only the main highlighter is enabled.
-# zstyle ':prezto:module:syntax-highlighting' highlighters \
-#   'main' \
-#   'brackets' \
-#   'pattern' \
-#   'line' \
-#   'cursor' \
-#   'root'
-#
+zstyle ':prezto:module:syntax-highlighting' highlighters \
+  'main' \
+  'brackets' \
+  'pattern' \
+  'line' \
+  'cursor' \
+  'root'
+
 # Set syntax highlighting styles.
-# zstyle ':prezto:module:syntax-highlighting' styles \
-#   'builtin' 'bg=blue' \
-#   'command' 'bg=blue' \
-#   'function' 'bg=blue'
-#
+zstyle ':prezto:module:syntax-highlighting' styles \
+  'reserved-word' 'fg=46,bold' \
+  'alias' 'fg=46,bold' \
+  'function' 'fg=46,bold' \
+  'builtin' 'fg=46,bold' \
+  'command' 'fg=46,bold' \
+  'precommand' 'fg=46,bold' \
+  'hashed-command' 'fg=46,bold' \
+  'single-quoted-argument' 'fg=226' \
+  'double-quoted-argument' 'fg=226' \
+  'dollar-double-quoted-argument' 'fg=51' \
+  'back-double-quoted-argument' 'fg=51' \
+  'unknown-token' 'fg=196,bold'
+
 # Set syntax pattern styles.
 # zstyle ':prezto:module:syntax-highlighting' pattern \
 #   'rm*-rf*' 'fg=white,bold,bg=red'
