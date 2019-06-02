@@ -98,18 +98,18 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 # Compare the current Node.js set by NVM to the required version.
 # Display it only if .nvmrc file exists in the current folder.
 #
+
+typeset -gA _P9K_NVM_CHECKER_STATES=(
+  'ok'            $YELLOW
+  'bad_version'   $RED
+)
+
 prompt_nvm_checker() {
   [[ ! $(type nvm) =~ 'nvm is a shell function'* ]] && return
 
   local node_version=$(nvm current)
   node_version=${node_version:1}
   [[ -z "${node_version}" ]] || [[ ${node_version} = "none" ]] && return
-
-  typeset -AH nvm_checker_states
-  nvm_checker_states=(
-    "OK"            "yellow"
-    "WARNING"       "red"
-  )
 
   local content=''
   local current_state=''
@@ -122,13 +122,13 @@ prompt_nvm_checker() {
     fi
 
     if [[ "$node_version_required" == "$node_version" ]]; then
-        current_state='OK'
+        current_state='ok'
         content="$node_version"
     else
-        current_state='WARNING'
+        current_state='bad_version'
         content="$node_version"
     fi
 
-    "$1_prompt_segment" "${0}_${current_state}" "$2" "${nvm_checker_states[$current_state]}" "$DEFAULT_COLOR" "${content}" 'NVM_CHECKER_ICON'
+    $1_prompt_segment "$0_${current_state}" "$2" "${_P9K_NVM_CHECKER_STATES[$current_state]}" "black" 'NVM_CHECKER_ICON' 0 '' "${content}"
   fi
 }
