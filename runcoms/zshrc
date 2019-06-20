@@ -35,6 +35,14 @@ alias glog='git log --oneline --decorate --graph'
 alias gloga='git log --oneline --decorate --graph --all'
 
 #
+# Docker compose
+#
+
+alias dc="docker-compose"
+alias dcrestart="dc restart"
+alias dclf="dc logs --tail=500 -f"
+
+#
 # fasd
 #
 
