@@ -15,6 +15,20 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zpowerlevelrc" ]]; then
   source "${ZDOTDIR:-$HOME}/.zpowerlevelrc"
 fi
 
+# Colors
+CYAN='014'
+BLUE='075'
+DARK_GREY='233'
+GREY='234'
+LIGHT_BLACK='232'
+LIGHT_GREEN='082'
+OFF_WHITE='254'
+ORANGE='214'
+RED='196'
+VIOLET='053'
+YELLOW='226'
+WHITE='255'
+
 #
 # Git aliases
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
@@ -22,17 +36,11 @@ fi
 
 alias ga='git add'
 alias gaa='git add --all'
-
+alias gl='git pull'
 alias gst='git status'
 
-alias glo='git log --oneline --decorate'
-alias glol="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'"
-alias glols="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --stat"
-alias glod="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset'"
-alias glods="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ad) %C(bold blue)<%an>%Creset' --date=short"
-alias glola="git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all"
-alias glog='git log --oneline --decorate --graph'
-alias gloga='git log --oneline --decorate --graph --all'
+alias glol="git log --graph --pretty='%C(${ORANGE})%h%Creset -%C(auto)%d%Creset %s %C(${LIGHT_GREEN})(%cr) %C(bold ${BLUE})<%an>%Creset'"
+alias glola="git log --graph --pretty='%C(${ORANGE})%h%Creset -%C(auto)%d%Creset %s %C(${LIGHT_GREEN})(%cr) %C(bold ${BLUE})<%an>%Creset' --all"
 
 #
 # Docker compose
