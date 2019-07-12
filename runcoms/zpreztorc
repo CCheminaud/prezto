@@ -32,6 +32,7 @@ zstyle ':prezto:load' pmodule \
   'editor' \
   'history' \
   'history-substring-search' \
+  'alias-tips' \
   'directory' \
   'spectrum' \
   'utility' \
@@ -49,6 +50,13 @@ zstyle ':prezto:load' pmodule \
 
 # Set the query found color.
 # zstyle ':prezto:module:autosuggestions:color' found ''
+
+#
+# Alias-tips
+#
+
+# Set the default alias tips wording.
+zstyle ":prezto:module:alias-tips" text "Alias tips: "
 
 #
 # Completions
