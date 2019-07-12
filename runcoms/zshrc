@@ -65,3 +65,7 @@ alias dclf="dc logs --tail=500 -f"
 alias j='fasd_cd -d'
 alias z='fasd_cd -d'
 
+#
+# monitoring
+#
+alias htop='htop --delay=20 --sort-key=M'
