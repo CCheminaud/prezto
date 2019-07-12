@@ -69,3 +69,9 @@ alias z='fasd_cd -d'
 # monitoring
 #
 alias htop='htop --delay=20 --sort-key=M'
+
+#
+# lazydocker
+#
+
+alias lzd='lazydocker'
