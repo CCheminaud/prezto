@@ -62,4 +62,6 @@ alias dclf="dc logs --tail=500 -f"
 # fasd
 #
 
-alias z='j'
+alias j='fasd_cd -d'
+alias z='fasd_cd -d'
+
