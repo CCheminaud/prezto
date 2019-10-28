@@ -101,11 +101,6 @@ POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 # Display it only if .nvmrc file exists in the current folder.
 #
 
-typeset -gA _P9K_NVM_CHECKER_STATES=(
-  'ok'            $YELLOW
-  'bad_version'   $RED
-)
-
 prompt_nvm_checker() {
   [[ ! $(type nvm) =~ 'nvm is a shell function'* ]] && return
 
@@ -113,8 +108,7 @@ prompt_nvm_checker() {
   node_version=${node_version:1}
   [[ -z "${node_version}" ]] || [[ ${node_version} = "none" ]] && return
 
-  local content=''
-  local current_state=''
+  local state=''
 
   if [[ -f ".nvmrc" ]]; then
     local node_version_required=$(cat .nvmrc)
@@ -124,13 +118,11 @@ prompt_nvm_checker() {
     fi
 
     if [[ "$node_version_required" == "$node_version" ]]; then
-        current_state='ok'
-        content="$node_version"
+        state=OK
     else
-        current_state='bad_version'
-        content="$node_version"
+        state=BAD_VERSION
     fi
 
-    $1_prompt_segment "$0_${current_state}" "$2" "${_P9K_NVM_CHECKER_STATES[$current_state]}" "black" 'NVM_CHECKER_ICON' 0 '' "${content}"
+    p10k segment -s $state -i NVM_CHECKER_ICON -r -t ${node_version}
   fi
 }
