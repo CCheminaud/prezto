@@ -47,8 +47,8 @@ alias gaa='git add --all'
 alias gl='git pull'
 alias gst='git status'
 
-alias glol="git log --graph --pretty='%C(${ORANGE})%h%Creset -%C(auto)%d%Creset %s %C(${LIGHT_GREEN})(%cr) %C(bold ${BLUE})<%an>%Creset'"
-alias glola="git log --graph --pretty='%C(${ORANGE})%h%Creset -%C(auto)%d%Creset %s %C(${LIGHT_GREEN})(%cr) %C(bold ${BLUE})<%an>%Creset' --all"
+alias glol="git log --date-order --graph --pretty='%C(${ORANGE})%h%Creset -%C(auto)%d%Creset %s %C(${LIGHT_GREEN})(%cr) %C(bold ${BLUE})<%an>%Creset'"
+alias glola="git log --date-order --graph --pretty='%C(${ORANGE})%h%Creset -%C(auto)%d%Creset %s %C(${LIGHT_GREEN})(%cr) %C(bold ${BLUE})<%an>%Creset' --all"
 
 #
 # Docker compose
