@@ -48,7 +48,50 @@ alias gl='git pull'
 alias gst='git status'
 
 alias glol="git log --date-order --graph --pretty='%C(${ORANGE})%h%Creset -%C(auto)%d%Creset %s %C(${LIGHT_GREEN})(%cr) %C(bold ${BLUE})<%an>%Creset'"
-alias glola="git log --date-order --graph --pretty='%C(${ORANGE})%h%Creset -%C(auto)%d%Creset %s %C(${LIGHT_GREEN})(%cr) %C(bold ${BLUE})<%an>%Creset' --all"
+alias glola="glol --all"
+alias gloli="git_log_interesting_branches"
+
+git_log_interesting_branches() {
+  git_command="glol"
+
+  # master branch
+  if [ `git rev-parse --verify --quiet master` ]
+  then
+    git_command="$git_command master"
+  elif [ `git rev-parse --verify --quiet origin/master` ]
+  then
+    git_command="$git_command origin/master"
+  fi
+
+  # develop branch
+  if [ `git rev-parse --verify --quiet develop` ]
+  then
+    git_command="$git_command develop"
+  elif [ `git rev-parse --verify --quiet origin/develop` ]
+  then
+    git_command="$git_command origin/develop"
+  fi
+
+  # release/* branches
+  if [ `git rev-parse --verify --quiet --branches="release/*"` ]
+  then
+    git_command="$git_command --branches=\"release/*\""
+  elif [ 'git rev-parse --verify --quiet --remotes="origin/release/*"' ]
+  then
+    git_command="$git_command --remotes=\"origin/release/*\""
+  fi
+
+  # hotfix/* branches
+  if [ `git rev-parse --verify --quiet --branches="hotfix/*"` ]
+  then
+    git_command="$git_command --branches=\"hotfix/*\""
+  elif [ 'git rev-parse --verify --quiet --remotes="origin/hotfix/*"' ]
+  then
+    git_command="$git_command --remotes=\"origin/hotfix/*\""
+  fi
+
+  eval $git_command
+}
 
 #
 # Docker compose
