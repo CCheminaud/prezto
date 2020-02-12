@@ -28,7 +28,7 @@ POWERLEVEL9K_MODE='awesome-patched'
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX=''
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{$DARK_GREY}%K{$DARK_GREY} %K{default} %F{default}"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(background_jobs context dir dir_writable vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status nvm_checker command_execution_time time)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status docker_context_checker nvm_checker command_execution_time time)
 
 # background jobs segment
 POWERLEVEL9K_BACKGROUND_JOBS_BACKGROUND=$LIGHT_BLACK
@@ -66,6 +66,10 @@ POWERLEVEL9K_VCS_MODIFIED_BACKGROUND=$YELLOW
 POWERLEVEL9K_VCS_MODIFIED_FOREGROUND=$LIGHT_BLACK
 POWERLEVEL9K_SHOW_CHANGESET='true'
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=7
+
+# docker context checker segment
+POWERLEVEL9K_DOCKER_CONTEXT_CHECKER_CUSTOM_CONTEXT_BACKGROUND=$CYAN
+POWERLEVEL9K_DOCKER_CONTEXT_CHECKER_ICON=''
 
 # nvm checker segment
 POWERLEVEL9K_NVM_CHECKER_OK_BACKGROUND=$LIGHT_GREEN
@@ -124,5 +128,24 @@ prompt_nvm_checker() {
     fi
 
     p10k segment -s $state -i NVM_CHECKER_ICON -r -t ${node_version}
+  fi
+}
+
+#
+# Docker context checker
+#
+# Check the current Docker context used.
+# Display segment only it the context is not the default one.
+#
+
+prompt_docker_context_checker() {
+  [[ ! -f "${HOME}/.docker/config.json" ]] && return
+
+  local current_context=$(cat "${HOME}/.docker/config.json" | grep '"currentContext"' | awk -F '"' '{ print $4 }')
+  local state=''
+
+  if [[ ! -z "${current_context}" ]]; then
+    state=CUSTOM_CONTEXT
+    p10k segment -s $state -i DOCKER_CONTEXT_CHECKER_ICON -r -t ${current_context}
   fi
 }
