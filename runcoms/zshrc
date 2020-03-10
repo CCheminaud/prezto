@@ -43,6 +43,12 @@ export LS_COLORS='di=1;36:ln=1;35:so=31:pi=33:ex=1;32:bd=34;46:cd=34;43:su=30;41
 zstyle ':completion:*:default' list-colors "$LS_COLORS"
 
 #
+# Visual Studio Code
+#
+
+alias c='code -n'
+
+#
 # Git aliases
 # https://github.com/robbyrussell/oh-my-zsh/blob/master/plugins/git/git.plugin.zsh
 #
