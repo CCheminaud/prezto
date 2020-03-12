@@ -38,15 +38,26 @@ WHITE='255'
 # ls colors
 # https://geoff.greer.fm/lscolors
 #
+
 export LSCOLORS='GxFxbxdxCxegedabagacad'
 export LS_COLORS='di=1;36:ln=1;35:so=31:pi=33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 zstyle ':completion:*:default' list-colors "$LS_COLORS"
 
 #
-# Visual Studio Code
+# Docker compose
 #
 
-alias c='code -n'
+alias dc="docker-compose"
+alias dcrestart="dc restart"
+alias dclf="dc logs --tail=500 -f"
+
+#
+# fasd
+# https://github.com/clvv/fasd
+#
+
+alias j='fasd_cd -d'
+alias z='fasd_cd -d'
 
 #
 # Git aliases
@@ -105,24 +116,23 @@ git_log_interesting_branches() {
 }
 
 #
-# Docker compose
+# Lazydocker
+# https://github.com/jesseduffield/lazydocker
 #
 
-alias dc="docker-compose"
-alias dcrestart="dc restart"
-alias dclf="dc logs --tail=500 -f"
+alias lzd='lazydocker'
 
 #
-# fasd
+# Monitoring
 #
 
-alias j='fasd_cd -d'
-alias z='fasd_cd -d'
-
-#
-# monitoring
-#
 alias htop='htop --delay=20 --sort-key=M'
+
+#
+# Visual Studio Code
+#
+
+alias c='code -n'
 
 #
 # lazydocker
