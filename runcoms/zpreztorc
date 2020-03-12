@@ -31,7 +31,6 @@ zstyle ':prezto:*:*' color 'yes'
 # The order matters.
 zstyle ':prezto:load' pmodule \
   'alias-tips' \
-  'autosuggestions' \
   'completion' \
   'directory' \
   'docker' \
@@ -48,7 +47,8 @@ zstyle ':prezto:load' pmodule \
   'spectrum' \
   'syntax-highlighting' \
   'terminal' \
-  'utility'
+  'utility' \
+  'autosuggestions' # after history-substring-search & syntax-highlighting
 
 #
 # Autosuggestions
