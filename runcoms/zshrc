@@ -135,7 +135,19 @@ alias htop='htop --delay=20 --sort-key=M'
 alias c='code -n'
 
 #
-# lazydocker
+# Daily tasks to run
 #
 
-alias lzd='lazydocker'
+daily() {
+  # Brew update
+  echo "Starting brew update..."
+  brew update
+  brew upgrade
+  brew cleanup
+  echo "Brew update finished"
+
+  # System update
+  echo "Starting MacOS update..."
+  softwareupdate -i -a
+  echo "MacOS update finished"
+}
