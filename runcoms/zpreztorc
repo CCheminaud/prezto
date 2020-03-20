@@ -43,6 +43,7 @@ zstyle ':prezto:load' pmodule \
   'node' \
   'osx' \
   'prompt' \
+  "python" \
   'ssh' \
   'spectrum' \
   'syntax-highlighting' \
