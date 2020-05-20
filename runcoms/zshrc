@@ -151,3 +151,8 @@ daily() {
   softwareupdate -i -a
   echo "MacOS update finished"
 }
+
+# Source .zshrc.private if exists
+if [[ -s "${HOME}/.zshrc.private" ]]; then
+  source "${HOME}/.zshrc.private"
+fi
