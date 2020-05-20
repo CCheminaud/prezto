@@ -57,6 +57,7 @@
     goenv                   # go environment (https://github.com/syndbg/goenv)
     nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
     nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
+    my_nvm_expected_version # node.js expected version from nvm
     nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
     # node_version          # node.js version
     # go_version            # go version (https://golang.org)
@@ -1442,16 +1443,34 @@
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
 
-  # Docker context checker
-  #
-  # Show current Docker context.
-  # The segment is displayed only current context if not the default one.
+  # Show the current Docker context.
+  # The segment is displayed only if current context is not the default one.
   function prompt_my_docker_context() {
     [[ ! -f "${HOME}/.docker/config.json" ]] && return
 
     local current_context=$(cat "${HOME}/.docker/config.json" | grep '"currentContext"' | awk -F '"' '{ print $4 }')
     if [[ ! -z "${current_context}" ]]; then
       p10k segment -i $'\uf308' +r -f 14 -t ${current_context}
+    fi
+  }
+
+  # Show the expected node.js version from .nvmrc.
+  # The segment is displayed only if the current nvm version is not the right one.
+  function prompt_my_nvm_expected_version() {
+    [[ ! -f ".nvmrc" ]] && return
+    [[ ! $(type nvm) =~ 'nvm is a shell function'* ]] && return
+
+    local expected_version=$(cat .nvmrc)
+    if [[ "${expected_version:0:1}" = "v" ]]; then
+        expected_version=${expected_version:1}
+    fi
+
+    local current_version=$(nvm current)
+    current_version=${current_version:1}
+    [[ -z "${current_version}" ]] || [[ ${current_version} = "none" ]] && return
+
+    if [[ "$expected_version" != "$current_version" ]]; then
+        p10k segment -i $'\uf071' +r -f 9 -t ${expected_version}
     fi
   }
 
@@ -1473,6 +1492,7 @@
     # and regular prompts.
     prompt_example
     prompt_my_docker_context
+    prompt_my_nvm_expected_version
   }
 
   # User-defined prompt segments can be customized the same way as built-in segments.
