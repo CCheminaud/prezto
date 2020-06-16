@@ -5,6 +5,8 @@
 #   Corentin Cheminaud <corentin.cheminaud@icloud.com>
 #
 
+autoload colors && colors
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -42,6 +44,23 @@ WHITE='255'
 export LSCOLORS='GxFxbxdxCxegedabagacad'
 export LS_COLORS='di=1;36:ln=1;35:so=31:pi=33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 zstyle ':completion:*:default' list-colors "$LS_COLORS"
+
+#
+# Docker
+#
+
+run_bash_from_docker_image() {
+  image=$1
+  local_volume=$(pwd)
+  docker_volume='/mnt'
+
+  echo "$fg_bold[yellow]Running docker image $image with $local_volume mounted...$reset_color"
+  docker run -it --rm -v "$local_volume:$docker_volume" -w $docker_volume $image bash
+  echo "$fg_bold[yellow]Docker image stopped.$reset_color"
+}
+
+alias shell_ubuntu="run_bash_from_docker_image ubuntu"
+alias shell_fedora="run_bash_from_docker_image fedora"
 
 #
 # Docker compose
