@@ -49,6 +49,10 @@ zstyle ':completion:*:default' list-colors "$LS_COLORS"
 # Docker
 #
 
+alias dkps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dkls='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dkl='docker logs --tail=500 -f'
+
 run_bash_from_docker_image() {
   image=$1
   local_volume=$(pwd)
