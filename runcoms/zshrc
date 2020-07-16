@@ -50,7 +50,9 @@ zstyle ':completion:*:default' list-colors "$LS_COLORS"
 #
 
 alias dkps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dkpsa='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}" -a'
 alias dkls='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}"'
+alias dklsa='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}" -a'
 alias dkl='docker logs --tail=500 -f'
 
 run_bash_from_docker_image() {
@@ -58,7 +60,7 @@ run_bash_from_docker_image() {
   local_volume=$(pwd)
   docker_volume='/mnt'
 
-  echo "$fg_bold[yellow]Running docker image $image with $local_volume mounted...$reset_color"
+  echo "$fg_bold[yellow]Running docker image $image with current directory mounted in $docker_volume...$reset_color"
   docker run -it --rm -v "$local_volume:$docker_volume" -w $docker_volume $image bash
   echo "$fg_bold[yellow]Docker image stopped.$reset_color"
 }
