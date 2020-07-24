@@ -46,6 +46,20 @@ export LS_COLORS='di=1;36:ln=1;35:so=31:pi=33:ex=1;32:bd=34;46:cd=34;43:su=30;41
 zstyle ':completion:*:default' list-colors "$LS_COLORS"
 
 #
+# Backup
+#
+
+backup() {
+  source=$1
+  target="$1.bck"
+
+  cp -r $source $target
+  echo "Backup done in $target"
+}
+
+alias bck='backup'
+
+#
 # Docker
 #
 
@@ -148,6 +162,12 @@ git_log_interesting_branches() {
 alias lzd='lazydocker'
 
 #
+# Make
+#
+
+alias m='make'
+
+#
 # Monitoring
 #
 
@@ -160,21 +180,42 @@ alias htop='htop --delay=20 --sort-key=M'
 alias c='code -n'
 
 #
-# Daily tasks to run
+# Script to update everything installed.
+#
+# Update the following packages manager:
+#   - Homebrew
+#   - Ruby gems
+#   - Python packages
+#   - Node packages
+#   - App Store (via mas utility)
+#   - MacOS update manager
 #
 
-daily() {
-  # Brew update
-  echo "Starting brew update..."
+update() {
+  # Homebrew updates
+  echo "$fg[yellow]==> $fg_bold[white] Starting Homebrew update... $reset_color"
   brew update
   brew upgrade
   brew cleanup
-  echo "Brew update finished"
+  echo "$fg[yellow]==> $fg_bold[white] Homebrew packages updated! $reset_color"
 
-  # System update
-  echo "Starting MacOS update..."
+  # Node.js updates
+  echo "$fg[yellow]==> $fg_bold[white] Starting Node.js packages udpate... $reset_color"
+  prev_node_version=`nvm current`
+  nvm use default
+  npm update -g
+  nvm use prev_node_version
+  echo "$fg[yellow]==> $fg_bold[white] Node.js packages updated! $reset_color"
+
+  # App Store updates
+  echo "$fg[yellow]==> $fg_bold[white] Starting App Store applications udpate... $reset_color"
+  mas upgrade
+  echo "$fg[yellow]==> $fg_bold[white] App Store applications updated! $reset_color"
+
+  # MacOS updates
+  echo "$fg[yellow]==> $fg_bold[white] Starting MacOS update... $reset_color"
   softwareupdate -i -a
-  echo "MacOS update finished"
+  echo "$fg[yellow]==> $fg_bold[white] MacOS is up to date! $reset_color"
 }
 
 # Source .zshrc.private if exists
