@@ -180,6 +180,12 @@ alias htop='htop --delay=20 --sort-key=M'
 alias c='code -n'
 
 #
+# Yarn
+#
+
+alias y='yarn'
+
+#
 # Script to update everything installed.
 #
 # Update the following packages manager:
