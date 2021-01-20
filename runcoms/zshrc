@@ -69,19 +69,6 @@ alias dkls='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names
 alias dklsa='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}" -a'
 alias dkl='docker logs --tail=500 -f'
 
-run_bash_from_docker_image() {
-  image=$1
-  local_volume=$(pwd)
-  docker_volume='/mnt'
-
-  echo "$fg_bold[yellow]Running docker image $image with current directory mounted in $docker_volume...$reset_color"
-  docker run -it --rm -v "$local_volume:$docker_volume" -w $docker_volume $image bash
-  echo "$fg_bold[yellow]Docker image stopped.$reset_color"
-}
-
-alias shell_ubuntu="run_bash_from_docker_image ubuntu"
-alias shell_fedora="run_bash_from_docker_image fedora"
-
 #
 # Docker compose
 #
@@ -184,45 +171,6 @@ alias c='code -n'
 #
 
 alias y='yarn'
-
-#
-# Script to update everything installed.
-#
-# Update the following packages manager:
-#   - Homebrew
-#   - Ruby gems
-#   - Python packages
-#   - Node packages
-#   - App Store (via mas utility)
-#   - MacOS update manager
-#
-
-update() {
-  # Homebrew updates
-  echo "$fg[yellow]==> $fg_bold[white] Starting Homebrew update... $reset_color"
-  brew update
-  brew upgrade
-  brew cleanup
-  echo "$fg[yellow]==> $fg_bold[white] Homebrew packages updated! $reset_color"
-
-  # Node.js updates
-  echo "$fg[yellow]==> $fg_bold[white] Starting Node.js packages udpate... $reset_color"
-  prev_node_version=`nvm current`
-  nvm use default
-  npm update -g
-  nvm use prev_node_version
-  echo "$fg[yellow]==> $fg_bold[white] Node.js packages updated! $reset_color"
-
-  # App Store updates
-  echo "$fg[yellow]==> $fg_bold[white] Starting App Store applications udpate... $reset_color"
-  mas upgrade
-  echo "$fg[yellow]==> $fg_bold[white] App Store applications updated! $reset_color"
-
-  # MacOS updates
-  echo "$fg[yellow]==> $fg_bold[white] Starting MacOS update... $reset_color"
-  softwareupdate -i -a
-  echo "$fg[yellow]==> $fg_bold[white] MacOS is up to date! $reset_color"
-}
 
 # Source .zshrc.private if exists
 if [[ -s "${HOME}/.zshrc.private" ]]; then
