@@ -149,6 +149,13 @@ git_log_interesting_branches() {
 alias lzd='lazydocker'
 
 #
+# Lazgit
+# https://github.com/jesseduffield/lazygit
+#
+
+alias lzg='lazygit'
+
+#
 # Make
 #
 
