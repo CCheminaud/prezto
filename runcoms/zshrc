@@ -73,7 +73,6 @@ alias dclf="dc logs --tail=500 -f"
 # https://github.com/clvv/fasd
 #
 
-alias j='fasd_cd -d'
 alias z='fasd_cd -d'
 
 #
