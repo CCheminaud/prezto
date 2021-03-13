@@ -22,27 +22,16 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.zprezto/runcoms/p10k.zsh.
 [[ ! -f ~/.zprezto/runcoms/p10k.zsh ]] || source ~/.zprezto/runcoms/p10k.zsh
 
-# Colors
-CYAN='014'
-BLUE='075'
-DARK_GREY='233'
-GREY='234'
-LIGHT_BLACK='232'
-LIGHT_GREEN='082'
-OFF_WHITE='254'
-ORANGE='214'
-RED='196'
-VIOLET='053'
-YELLOW='226'
-WHITE='255'
-
 #
 # ls colors
 # https://geoff.greer.fm/lscolors
 #
 
+# BSD LSCOLORS
 export LSCOLORS='GxFxbxdxCxegedabagacad'
+# Linux LS_COLORS
 export LS_COLORS='di=1;36:ln=1;35:so=31:pi=33:ex=1;32:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
+
 zstyle ':completion:*:default' list-colors "$LS_COLORS"
 
 #
