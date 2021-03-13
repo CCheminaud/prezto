@@ -63,7 +63,9 @@ alias dkl='docker logs --tail=500 -f'
 #
 
 alias dc="docker-compose"
-alias dcrestart="dc restart"
+alias dcd="dc up"
+alias dcr="dc down"
+alias dcu="dc up"
 alias dclf="dc logs --tail=500 -f"
 
 #
