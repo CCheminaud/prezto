@@ -43,7 +43,7 @@ backup() {
   target="$1.bck"
 
   cp -r $source $target
-  echo "Backup done in $target"
+  echo "File copied in $target"
 }
 
 alias bck='backup'
