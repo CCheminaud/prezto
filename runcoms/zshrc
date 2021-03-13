@@ -85,7 +85,7 @@ alias gaa='git add --all'
 alias gl='git pull'
 alias gst='git status'
 
-alias glol="git log --date-order --graph --pretty='%C(${ORANGE})%h%Creset -%C(auto)%d%Creset %s %C(${LIGHT_GREEN})(%cr) %C(bold ${BLUE})<%an>%Creset'"
+alias glol="git log --date-order --graph --pretty='%C(yellow)%h%Creset -%C(auto)%d%Creset %s %C(bold blue)<%an>%Creset %C(green)(%cr)%Creset'"
 alias glola="glol --all"
 alias gloli="git_log_interesting_branches"
 
