@@ -139,7 +139,7 @@ git_log_interesting_branches() {
 alias lzd='lazydocker'
 
 #
-# Lazgit
+# Lazygit
 # https://github.com/jesseduffield/lazygit
 #
 
