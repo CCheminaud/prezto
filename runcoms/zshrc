@@ -69,6 +69,14 @@ alias dcu="dc up"
 alias dclf="dc logs --tail=500 -f"
 
 #
+# exa
+# https://github.com/ogham/exa
+#
+
+alias ls='exa -1 --icons -a --group-directories-first'
+alias ll='ls -l'
+
+#
 # fasd
 # https://github.com/clvv/fasd
 #
