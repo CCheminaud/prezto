@@ -341,7 +341,13 @@
 
   #####################################[ vcs: git status ]######################################
   # Branch icon. Set this parameter to '\uF126 ' for the popular Powerline branch icon.
-  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON=
+  typeset -g POWERLEVEL9K_VCS_BRANCH_ICON='\uF126 '
+
+  # Tag icon. Set this parameter to '\uF02B ' by default.
+  typeset -g POWERLEVEL9K_VCS_TAG_ICON='\uF02B '
+
+  # Commit icon. Set this parameter to '\uFC16 ' by default.
+  typeset -g POWERLEVEL9K_VCS_COMMIT_ICON='\uFC16 '
 
   # Untracked files icon. It's really a question mark, your font isn't broken.
   # Change the value of this parameter to show a different icon.
@@ -402,13 +408,13 @@
       # Otherwise show the first 12 … the last 12.
       # Tip: To always show tag name in full without truncation, delete the next line.
       (( $#tag > 32 )) && tag[13,-13]="…"  # <-- this line
-      res+="${meta} ${clean}${tag//\%/%%}"
+      res+="${meta} ${clean}${(g::)POWERLEVEL9K_VCS_TAG_ICON}${tag//\%/%%}"
     fi
 
     # Display the current Git commit if there is no branch and no tag.
     # Tip: To always display the current Git commit, delete the next line.
-    [[ -z $VCS_STATUS_LOCAL_BRANCH && -z $VCS_STATUS_LOCAL_BRANCH ]] &&  # <-- this line
-      res+="${meta}@${clean}${VCS_STATUS_COMMIT[1,8]}"
+    # [[ -z $VCS_STATUS_LOCAL_BRANCH && -z $VCS_STATUS_LOCAL_BRANCH ]] &&  # <-- this line
+      res+="${meta} ${clean}${(g::)POWERLEVEL9K_VCS_COMMIT_ICON}${VCS_STATUS_COMMIT[1,8]}"
 
     # Show tracking branch name if it differs from local branch.
     if [[ -n ${VCS_STATUS_REMOTE_BRANCH:#$VCS_STATUS_LOCAL_BRANCH} ]]; then
