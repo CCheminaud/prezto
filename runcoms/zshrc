@@ -148,6 +148,12 @@ git_log_interesting_branches() {
 }
 
 #
+# htop
+#
+
+alias htop='htop --delay=20'
+
+#
 # Lazydocker
 # https://github.com/jesseduffield/lazydocker
 #
