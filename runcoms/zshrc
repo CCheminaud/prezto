@@ -194,10 +194,11 @@ load-nvmrc
 alias m='make'
 
 #
-# Monitoring
+# procs
+# https://github.com/dalance/procs
 #
 
-alias htop='htop --delay=20'
+alias ps='procs -w --sortd cpu'
 
 #
 # Visual Studio Code
